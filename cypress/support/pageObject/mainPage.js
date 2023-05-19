@@ -1,27 +1,46 @@
 /// <reference types="cypress" />
 
 class MainPage {
+  shoppingCartButton() {
+    return cy.get('.shopping_cart_link');
+  }
 
-    shoppingCartButton() {
-        return cy.get('a[class="shopping_cart_link"]');
-    };
+  //Operations
 
-    //Operations
-
-    addItemToCart(product) {
-        cy.wait(1000)
-        let productInfo = {};
-        cy.get('div[class="inventory_item"]').contains(product)
+  addItemToCart(...products) {
+    let cart = {};
+  
+    products.forEach((product) => {
+      let productInfo = {};
+      let nameSelector = ".inventory_item_name";
+      let selectorArr = [
+        ".inventory_item_name",
+        ".inventory_item_price",
+        ".inventory_item_desc",
+      ];
+      let productBoxSelector = ".inventory_item_description";
+  
+      cy.get(nameSelector)
+        .contains(product)
+        .parents(productBoxSelector)
         .within(() => {
-            
-            productInfo = {
-                    productName : cy.get('.inventory_item_name').invoke('text'),
-                    productPrice : cy.get('.pricebar .inventory_item_price').invoke('text'),
-                    productDesc : cy.get('.inventory_item_desc').invoke('text')
-                }
-        })
-        return productInfo;
-    }
-};
+          selectorArr.forEach((element) => {
+            cy.get(element)
+              .invoke("text")
+              .then((text) => {
+                productInfo[(element.split("_"))[2]] = text;
+              });
+          });
+          cy.get("button")
+            .contains("Add to cart")
+            .click();
+        });
+  
+      cart[product] = productInfo;
+    });
+  
+    cy.writeFile('cypress/fixtures/cart.json', cart)
+  }
+}
 
 module.exports = MainPage;
