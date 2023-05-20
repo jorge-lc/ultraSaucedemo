@@ -2,14 +2,14 @@
 
 class MainPage {
   shoppingCartButton() {
-    return cy.get('.shopping_cart_link');
+    return cy.get(".shopping_cart_link");
   }
 
   //Operations
 
   addItemToCart(...products) {
     let cart = {};
-  
+
     products.forEach((product) => {
       let productInfo = {};
       let nameSelector = ".inventory_item_name";
@@ -19,7 +19,7 @@ class MainPage {
         ".inventory_item_desc",
       ];
       let productBoxSelector = ".inventory_item_description";
-  
+
       cy.get(nameSelector)
         .contains(product)
         .parents(productBoxSelector)
@@ -28,18 +28,16 @@ class MainPage {
             cy.get(element)
               .invoke("text")
               .then((text) => {
-                productInfo[(element.split("_"))[2]] = text;
+                productInfo[element.split("_")[2]] = text;
               });
           });
-          cy.get("button")
-            .contains("Add to cart")
-            .click();
+          cy.get("button").contains("Add to cart").click();
         });
-  
+
       cart[product] = productInfo;
     });
-  
-    cy.writeFile('cypress/fixtures/cart.json', cart)
+
+    cy.writeFile("cypress/fixtures/cart.json", cart);
   }
 }
 
