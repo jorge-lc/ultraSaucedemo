@@ -33,23 +33,23 @@ context("Validate different purchase flow scenarios", () => {
     checkoutCompletePage = new CheckoutCompletePage();
   });
 
-  // it("Complete purchase flow with 3 products", function () {
-  //   let productsInfo = {};
-  //   username = this.credentials.username;
-  //   password = this.credentials.password;
-  //   loginPage.login(username, password);
+  it("Complete purchase flow with 3 products", function () {
+    let productsInfo = {};
+    username = this.credentials.username;
+    password = this.credentials.password;
+    loginPage.login(username, password);
 
-  //   productsInfo = mainPage.addItemToCart(
-  //     this.productNames.backPack,
-  //     this.productNames.boltTshirt,
-  //     this.productNames.redTshirt
-  //   );
-  //   mainPage.shoppingCartButton().click();
-  //   cartPage.validateProductInfoAndCheckOut();
-  //   checkoutStepOnePage.completeForm(this.userInfo);
-  //   checkoutStepTwoPage.validateProductInfoAndFinish(this.userInfo);
-  //   checkoutCompletePage.validateCompleteCheckout();
-  // });
+    productsInfo = mainPage.addItemToCart(
+      this.productNames.backPack,
+      this.productNames.boltTshirt,
+      this.productNames.redTshirt
+    );
+    mainPage.shoppingCartButton().click();
+    cartPage.validateProductInfoAndCheckOut();
+    checkoutStepOnePage.completeForm(this.userInfo);
+    checkoutStepTwoPage.validateProductInfoAndFinish(this.userInfo);
+    checkoutCompletePage.validateCompleteCheckout();
+  });
 
   it("Validate filter functionality", function () {
     username = this.credentials.username;
@@ -58,4 +58,15 @@ context("Validate different purchase flow scenarios", () => {
 
     mainPage.validateFilters();
   })
+
+  it("Validate Information form mandatory fields", function () {
+    username = this.credentials.username;
+    password = this.credentials.password;
+    loginPage.login(username, password);
+
+    mainPage.addItemToCart(this.productNames.backPack);
+    mainPage.shoppingCartButton().click();
+    cartPage.checkoutButton().click();
+    checkoutStepOnePage.validateMandatoryFields()
+  });
 });
