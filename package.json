@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "headlessTests": "npx cypress run --headless -b chrome 'cypress/e2e/integration/purchaseFlows.cy.js'",
+    "headedTests" : "npx cypress run --headed -b chrome 'cypress/e2e/integration/purchaseFlows.cy.js'"
   },
   "author": "Jorge Carabajal",
   "license": "ISC",

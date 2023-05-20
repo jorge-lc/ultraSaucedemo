@@ -57,7 +57,6 @@ class MainPage {
           cy.get("select[data-test='product_sort_container']")
             .select(elementFilter)
             .then(() => {
-              cy.wait(2000);
               this.filterOrderValidator(
                 elementFilter,
                 nameSelector,
