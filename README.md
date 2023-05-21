@@ -50,5 +50,3 @@ The chosen testing approach for the "ultraSaucedemo" repository is a combination
 ## suggestions for improvements of technical task
 1. Maybe each point of the tasks could be more explained (e.g., in the third task related with CI I didn't understand if you want me to implement the framework in a pipeline or if I have to prepare the framework in a ready state so that hypothetically someone else will do it)
 2. I had some issues when I start working with https://www.saucedemo.com/ webpage. For some reason the webpage didn't trigger the "load" event all the times that the web loaded and with the latest Cypress version, the command cy.visit() that waits the "load" event to be triggered to start the execution of the testcases,  throws a timeout error. I solved this changing the version of Cypress (I used 10.0.0v) and delete Services workers before the page loads. All those issues could be avoid offering an optional dummy web application.
-
-
