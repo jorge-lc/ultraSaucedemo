@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test" : "cypress run",
     "headlessTests": "npx cypress run --headless -b chrome 'cypress/e2e/integration/purchaseFlows.cy.js'",
     "headedTests" : "npx cypress run --headed -b chrome 'cypress/e2e/integration/purchaseFlows.cy.js'"
   },
