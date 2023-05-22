@@ -1,4 +1,4 @@
-name: Run Newman Tests
+name: Run Cypress Tests
 
 on:
   push:
