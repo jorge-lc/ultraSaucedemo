@@ -34,7 +34,6 @@ context("Validate different purchase flow scenarios", () => {
   });
 
   it("Complete purchase flow with 3 products", function () {
-    let productsInfo = {};
     username = this.credentials.username;
     password = this.credentials.password;
     loginPage.login(username, password);
